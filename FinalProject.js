@@ -103,3 +103,13 @@ function deleteTask(id) {
 function logTasks() {
     console.log(JSON.stringify(tasks));
 }
+
+// Simple HTML escaping for safety
+function escapeHtml(str) {
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}

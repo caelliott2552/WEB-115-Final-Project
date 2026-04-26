@@ -81,3 +81,13 @@ function renderTasks() {
 
     taskManagerDiv.innerHTML = html;
 }
+
+// Toggle completion status
+function toggleCompleted(id) {
+    const task = tasks.find(t => t.id === id);
+    if (task) {
+        task.isCompleted = !task.isCompleted;
+        logTasks();
+        renderTasks();
+    }
+}

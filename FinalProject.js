@@ -98,3 +98,8 @@ function deleteTask(id) {
     logTasks();
     renderTasks();
 }
+
+// Log tasks to console using JSON.stringify
+function logTasks() {
+    console.log(JSON.stringify(tasks));
+}

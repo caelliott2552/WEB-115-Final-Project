@@ -91,3 +91,10 @@ function toggleCompleted(id) {
         renderTasks();
     }
 }
+
+// Delete a task
+function deleteTask(id) {
+    tasks = tasks.filter(t => t.id !== id);
+    logTasks();
+    renderTasks();
+}

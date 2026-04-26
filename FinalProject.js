@@ -43,4 +43,41 @@ taskForm.addEventListener('submit', function (e) {
     taskNameInput.value = '';
     prioritySelect.value = 'Medium';
     importantCheckbox.checked = false;
-})
+});
+
+// Render tasks into the taskManager using innerHTML
+function renderTasks() {
+    let html = '';
+
+    tasks.forEach(task => {
+        const importantClass = task.isImportant ? 'task-important' : '';
+        const completedClass = task.isCompleted ? 'task-completed' : '';
+
+        html += `
+      <div class="task-card ${importantClass} ${completedClass}">
+        <div class="task-header">
+          <span>${escapeHtml(task.name)}</span>
+          <span>Priority: ${task.priority}</span>
+        </div>
+        <div class="task-meta">
+          Added: ${task.date}
+        </div>
+        <div class="task-actions">
+          <button onclick="toggleCompleted(${task.id})">
+            ${task.isCompleted ? 'Undo' : 'Done'}
+          </button>
+          <button onclick="deleteTask(${task.id})">
+            Delete
+          </button>
+          <label>
+            <input type="checkbox" onchange="toggleCompleted(${task.id})" ${task.isCompleted ? 'checked' : ''}>
+            Completed
+          </label>
+          ${task.isImportant ? '<span style="color:red;font-size:0.8rem;">Important</span>' : ''}
+        </div>
+      </div>
+    `;
+    })
+
+    taskManagerDiv.innerHTML = html;
+}
